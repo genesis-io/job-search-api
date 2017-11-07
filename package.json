@@ -1,0 +1,30 @@
+{
+  "name": "job-search-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ansi-styles": "^3.2.0",
+    "chalk": "^2.3.0",
+    "color-convert": "^1.9.0",
+    "color-name": "^1.1.3",
+    "escape-string-regexp": "^1.0.5",
+    "has-flag": "^2.0.0",
+    "supports-color": "^4.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/genesis-io/job-search-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/genesis-io/job-search-api/issues"
+  },
+  "homepage": "https://github.com/genesis-io/job-search-api#readme"
+}
