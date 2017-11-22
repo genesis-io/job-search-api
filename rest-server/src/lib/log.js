@@ -1,5 +1,7 @@
 import chalk from 'chalk';
 
+require('dotenv').config()
+
 export const success = (...args) => {
   if (process.env.DEBUG === 'TRUE') {
     console.log(chalk.black.bgGreen.bold(...args));

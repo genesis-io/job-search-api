@@ -4,23 +4,40 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon bin/entry.js"
+    "start": "nodemon bin/entry.js",
+    "create-tables": "node src/config/syncTables.js",
+    "test": "find ./src -name '*test.js' | xargs mocha -R spec"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "chalk": "^2.3.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-validation": "^1.0.2",
+    "has-flag": "^2.0.0",
+    "joi": "^13.0.2",
+    "jsonwebtoken": "^8.1.0",
+    "mysql": "^2.15.0",
     "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "escape-string-regexp": "^1.0.5",
+    "eslint": "^4.11.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }

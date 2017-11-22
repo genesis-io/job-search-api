@@ -1,0 +1,10 @@
+"plugins": [
+  "node",
+  "security",
+  "mocha",
+],
+"extends": [
+  "plugin:security/recommended"
+  "eslint:recommended",
+  "plugin:node/recommended",
+]
