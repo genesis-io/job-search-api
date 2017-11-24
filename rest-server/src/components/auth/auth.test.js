@@ -1,21 +1,44 @@
 import request from 'supertest';
-import express from 'express';
-import auth from '../../components/auth/authController';
+import { dropTables, syncTables } from "../../lib/sqlScripts";
+import app from '../../config/express';
 
-const app = express();
+let url;
 
-app.post('/api/auth/signup', auth.signUp);
+beforeAll( async() => {
+  await dropTables();
+  await syncTables();
+  url = '/api/auth/signup';
+})
 
-describe('POST/api/auth/signup', function() {
-  it('respond with json', function() {
-    return request(app)
-      .post('/api/auth/signup')
-      .set('Accept', 'application/json')
-      .send({email: 'test@test.com', password: 'tester'})
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .then(response => {
-        console.log(response);
-      })
+describe('POST/api/auth/signup', () => {
+  test('validates email is an actual email', async () => {
+    const response = await request(app)
+      .post(url)
+      .send({ email: 'notanemail@gmail.com', password: 'password'})
+    expect(response.statusCode).toBe(200);
+  })
+  test('validates password matches custom regex', async () => {
+    const response = await request(app)
+      .post(url)
+      .send({ email: 'emailthatworks@gmail.com', password: 'hithere' })
+    expect(response.statusCode).toBe(200);
+  })
+  test('checks if email exist', async () => {
+    const response = await request(app)
+      .post(url)
+      .send({ email: 'huhuh@gmail.com', password: 'newpassword' })
+    expect(response.statusCode).toBe(200);
+  })
+  test('checks if password exist', async () => {
+    const response = await request(app)
+      .post(url)
+      .send({ email: 'passworddontexist@gmail.com', password: 'ItsAllGood36' })
+    expect(response.statusCode).toBe(200);
+  })
+  test('response to have authorization header with token', async () => {
+    const response = await request(app)
+      .post(url)
+      .send({ email: 'newtest@gmail.com', password: 'testit' })
+    expect(response.header).toHaveProperty('authorization');
   });
 });

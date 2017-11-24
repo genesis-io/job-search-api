@@ -3,10 +3,6 @@ import UserHelper from './userHelpers'
 import { error } from '../../lib/log';
 
 export default class UserController {
-  static async createUserTable() {
-    const queryString = UserHelper.createTable();
-    return dataBase.queryAsync(queryString)
-  }
   static async findUser(email) {
     try {
       const queryString = UserHelper.getUser(email);

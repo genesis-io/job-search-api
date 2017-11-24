@@ -12,26 +12,22 @@ export default class Auth {
     const saltRounds = 10;
     try {
       if(!email || !password) {
+        error('email and password must be provided')
         return res.status(422).send('email and password must be provided')
       }
       const user = await User.findUser(email)
       if (user.length) {
+        error('email exists already')
         return res.status(422).send('email exists already');
       } else {
         const salt = await bcrypt.genSalt(saltRounds);
         const hashedPassword = await bcrypt.hash(password, salt);
         await User.saveUser(email, hashedPassword);
         const token = await Auth.createTokenForUser(email);
-        return res.status(200).json({ token })
+        return res.status(200).append('authorization', token).json('succesfully created user');
       }
     } catch(e) {
       return next(e);
     }
-  }
-  static async IsAuthenticated(jwt) {
-
-  }
-  static async login(req, res, next) {
-
   }
 }

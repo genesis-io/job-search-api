@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon bin/entry.js",
-    "create-tables": "node src/config/syncTables.js",
-    "test": "find ./src -name '*test.js' | xargs mocha -R spec"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
@@ -16,10 +16,12 @@
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "chalk": "^2.3.0",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "express-validation": "^1.0.2",
     "has-flag": "^2.0.0",
+    "helmet": "^3.9.0",
     "joi": "^13.0.2",
     "jsonwebtoken": "^8.1.0",
     "mysql": "^2.15.0",
@@ -28,16 +30,19 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
-    "chai": "^4.1.2",
     "escape-string-regexp": "^1.0.5",
     "eslint": "^4.11.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-security": "^1.4.0",
-    "mocha": "^4.0.1",
+    "jest": "^21.2.1",
+    "superagent": "^3.8.1",
     "supertest": "^3.0.0"
   }
 }

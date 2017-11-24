@@ -7,4 +7,5 @@
   "plugin:security/recommended"
   "eslint:recommended",
   "plugin:node/recommended",
+  "airbnb"
 ]

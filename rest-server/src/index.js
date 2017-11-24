@@ -1,23 +1,11 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import dataBase from './config/db';
-// import sync from './config/syncTables';
+import http from 'http';
+import app from './config/express';
 import { success } from './lib/log';
-import router from './router';
-const middleWare = [
-  bodyParser.json({extended: true}),
-  bodyParser.urlencoded({extended: true})
-]
+const PORT = process.env.PORT || 3000;
 
-//whip up instance of express app
-const app = express();
-
-//route handlers and middleware
-app.use(...middleWare)
-app.use('/api', router);
+const server = http.createServer(app);
 
 //set port for app instance to listen to
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   success('rest-server listening on port ', PORT);
 });

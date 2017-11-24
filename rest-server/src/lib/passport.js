@@ -1,0 +1,1 @@
+import passport from 'rest-server/src/lib/passport';

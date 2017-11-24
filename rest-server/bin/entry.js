@@ -15,4 +15,3 @@ env.config({
 });
 
 require('../src');
-// require('../src/config/syncTables');
