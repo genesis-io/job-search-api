@@ -7,6 +7,14 @@ export default class Auth {
   static async createTokenForUser(userEmail) {
     return await jwt.sign({ sub: userEmail, iat: Math.floor(Date.now() / 100), exp: 604800 }, process.env.JWT_SECRET);
   }
+  static async login(req, res, next) {
+    try {
+      const token = await Auth.createTokenForUser(req.user[0].email)
+      return res.status(200).append('authorization', token).send('successfully logged in')
+    } catch(e) {
+      return next(e)
+    }
+  }
   static async signUp(req, res, next) {
     const { email, password } = req.body;
     const saltRounds = 10;
@@ -24,7 +32,7 @@ export default class Auth {
         const hashedPassword = await bcrypt.hash(password, salt);
         await User.saveUser(email, hashedPassword);
         const token = await Auth.createTokenForUser(email);
-        return res.status(200).append('authorization', token).json('succesfully created user');
+        return res.status(200).append('authorization', token).json('successfully created user');
       }
     } catch(e) {
       return next(e);

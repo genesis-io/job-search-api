@@ -10,7 +10,7 @@ const middleWare = [
   methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
   }),
   bodyParser.json({extended: true}),
-  bodyParser.urlencoded({extended: true})
+  bodyParser.urlencoded({extended: true}),
 ]
 
 //whip up instance of express app

@@ -1,11 +1,13 @@
+{
+"extends": [
+  "airbnb-base",
+  "plugin:security/recommended",
+  "eslint:recommended",
+  "plugin:node/recommended"
+  ],
 "plugins": [
   "node",
   "security",
-  "mocha",
-],
-"extends": [
-  "plugin:security/recommended"
-  "eslint:recommended",
-  "plugin:node/recommended",
-  "airbnb"
-]
+  "mocha"
+  ]
+}
