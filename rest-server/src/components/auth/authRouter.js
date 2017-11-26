@@ -1,6 +1,6 @@
 import express from 'express';
 import validate from 'express-validation';
-import passportLocal from '../../lib/passport';
+import passportServices from '../../lib/passport';
 import passport from 'passport';
 import validation from '../../lib/request-validation'
 import auth from './authController';

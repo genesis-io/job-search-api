@@ -5,7 +5,7 @@ import { error } from '../../lib/log';
 
 export default class Auth {
   static async createTokenForUser(userEmail) {
-    return await jwt.sign({ sub: userEmail, iat: Math.floor(Date.now() / 100), exp: 604800 }, process.env.JWT_SECRET);
+    return await jwt.sign({ sub: userEmail, iat: Math.floor(Date.now() / 100) }, process.env.JWT_SECRET, { expiresIn: '7d'} );
   }
   static async login(req, res, next) {
     try {

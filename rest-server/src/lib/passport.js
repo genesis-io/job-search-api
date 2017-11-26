@@ -6,13 +6,13 @@ import User from '../components/user/userController';
 
 const LocalStrategy = local.Strategy;
 const JwtStrategy = jwt.Strategy;
-const extractJwt = jwt.ExtractJwt;
+const ExtractJwt = jwt.ExtractJwt;
 const localOptions = {
   usernameField: 'email',
 }
 const jwtOptions = {
-  secretOrKey: process.env.JWT_SECRET,
-  jwtFromRequest: extractJwt.fromHeader('authorization')
+  jwtFromRequest: ExtractJwt.fromHeader('authorization'),
+  secretOrKey: process.env.JWT_SECRET
 }
 
 passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
