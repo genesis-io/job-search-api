@@ -10,7 +10,11 @@ const router = express.Router();
 router.route('/signup')
   .post(validate(validation.signUp),auth.signUp)
 
+router.route('/github')
+  .post(validate(validation.signUp))
+
 router.route('/login')
   .post(validate(validation.login), passport.authenticate('local', { session: false }), auth.login)
+
 
 export default router;
