@@ -1,24 +1,23 @@
 import dataBase from '../../config/db';
-import UserHelper from './userHelpers'
+import { getUser, postUser } from './userHelpers'
 import { error } from '../../lib/log';
 
-export default class UserController {
-  static async findUser(email) {
+export const findUser = async email => {
+  try {
+    const queryString = getUser(email);
+    return dataBase.queryAsync(queryString);
+  } catch(e) {
+    error(e);
+    throw new Error(e);
+  }
+}
+
+export const saveUser = async (email, password) => {
     try {
-      const queryString = UserHelper.getUser(email);
+      const queryString = postUser(email, password);
       return dataBase.queryAsync(queryString);
     } catch(e) {
       error(e);
       throw new Error(e);
     }
   }
-  static async saveUser(email, password) {
-    try {
-      const queryString = UserHelper.postUser(email, password);
-      return dataBase.queryAsync(queryString);
-    } catch(e) {
-      error(e);
-      throw new Error(e);
-    }
-  }
- }

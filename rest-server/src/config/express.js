@@ -6,7 +6,7 @@ import router from '../router';
 const middleWare = [
   helmet(),
   cors({
-  allowedHeaders: 'Content-Type, Authorization',
+  allowedHeaders: 'Content-Type, authorization',
   methods: ['GET, POST, PUT, DELETE', 'OPTIONS'],
   }),
   bodyParser.json({extended: true}),
