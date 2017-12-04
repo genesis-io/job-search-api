@@ -3,7 +3,10 @@ import validate from 'express-validation';
 import passportServices from '../../lib/passport';
 import passport from 'passport';
 import validation from '../../lib/request-validation'
-import { signUp, login } from './authController';
+import {
+  signUp,
+  login
+} from './authController';
 const router = express.Router();
 
 

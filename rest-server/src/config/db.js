@@ -1,5 +1,8 @@
 import mysql from 'mysql';
-import { success, error } from '../lib/log'
+import {
+  success,
+  error
+} from '../lib/log'
 import Promise from 'bluebird';
 
 require('dotenv').config();

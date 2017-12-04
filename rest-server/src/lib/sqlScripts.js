@@ -1,5 +1,8 @@
 import db from '../config/db';
-import { success, error } from './log';
+import {
+  success,
+  error
+} from './log';
 
 export const dropTables = async () => {
   try {

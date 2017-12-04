@@ -1,4 +1,7 @@
-import { findUser, saveUser } from '../user/userController';
+import {
+  findUser,
+  saveUser
+} from '../user/userController';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { error } from '../../lib/log';
