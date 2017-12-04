@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "jest" : {
+    "collectCoverage": true,
+    "notify": true
+  },
   "scripts": {
     "start": "nodemon bin/entry.js",
     "test": "jest",
