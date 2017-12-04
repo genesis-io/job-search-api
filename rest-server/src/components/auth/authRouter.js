@@ -11,7 +11,7 @@ const router = express.Router();
 
 
 router.route('/signup')
-  .post(validate(validation.signUp),signUp)
+  .post(validate(validation.signUp), signUp)
 
 router.route('/github')
   .post(validate(validation.signUp))

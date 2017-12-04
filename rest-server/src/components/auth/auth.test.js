@@ -3,16 +3,15 @@ import {
   dropTables,
   syncTables
 } from "../../lib/sqlScripts";
+import {
+  signupUrl,
+  loginUrl
+} from '../../config/testglobals'
 import app from '../../config/express';
-
-let signupUrl;
-let loginUrl;
 
 beforeAll( async() => {
   await dropTables();
   await syncTables();
-  signupUrl = '/api/auth/signup';
-  loginUrl = '/api/auth/login';
 })
 
 describe('POST/api/auth/signup', () => {

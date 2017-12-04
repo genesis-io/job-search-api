@@ -1,8 +1,5 @@
 import dataBase from '../../config/db';
-import {
-  getUser,
-  postUser
-} from './userHelpers'
+import { getUser, postUser } from './userHelpers'
 import { error } from '../../lib/log';
 
 export const findUser = async email => {
