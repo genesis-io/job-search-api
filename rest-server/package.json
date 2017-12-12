@@ -3,13 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "jest" : {
+  "jest": {
     "collectCoverage": true,
-    "notify": true
+    "notify": true,
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "transform": {
+      "^.+\\.(ts|tsx)?$": "ts-jest"
+    }
   },
   "scripts": {
-    "start": "nodemon bin/entry.js",
-    "test": "jest",
+    "start": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
+    "test": "jest ",
     "test:watch": "jest --watch"
   },
   "keywords": [],
@@ -38,10 +49,23 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
+    "@types/bcrypt": "^1.0.0",
+    "@types/bluebird": "^3.5.18",
+    "@types/body-parser": "^1.16.8",
+    "@types/chalk": "^2.2.0",
+    "@types/cors": "^2.8.3",
+    "@types/dotenv": "^4.0.2",
+    "@types/express": "^4.0.39",
+    "@types/helmet": "^0.0.37",
+    "@types/jest": "^21.1.8",
+    "@types/joi": "^13.0.2",
+    "@types/mysql": "^2.15.2",
+    "@types/passport": "^0.4.1",
+    "@types/passport-github2": "^1.1.2",
+    "@types/passport-jwt": "^3.0.0",
+    "@types/passport-local": "^1.0.32",
+    "@types/supertest": "^2.0.4",
     "babel-cli": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
     "escape-string-regexp": "^1.0.5",
     "eslint": "^4.11.0",
     "eslint-config-airbnb-base": "^12.1.0",
@@ -51,6 +75,9 @@
     "eslint-plugin-security": "^1.4.0",
     "jest": "^21.2.1",
     "superagent": "^3.8.1",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "ts-jest": "^21.2.4",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.2"
   }
 }
