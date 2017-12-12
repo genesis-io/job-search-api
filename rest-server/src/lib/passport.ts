@@ -1,20 +1,24 @@
-import passport from 'passport';
-import local from 'passport-local';
-import jwt from 'passport-jwt';
-import GitHubStrategy from 'passport-github2';
-import bcrypt from 'bcrypt';
-import { findUser } from '../components/user/userController';
+import * as  passport from 'passport';
+import * as  local from 'passport-local';
+import * as  jwt from 'passport-jwt';
+import * as  GitHubStrategy from 'passport-github2';
+import * as  bcrypt from 'bcrypt';
+
+import { findUser } from '../components/user/userQueries';
 
 const LocalStrategy = local.Strategy;
 const JwtStrategy = jwt.Strategy;
 const ExtractJwt = jwt.ExtractJwt;
+
 const localOptions = {
   usernameField: 'email',
-}
+};
+
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromHeader('authorization'),
   secretOrKey: process.env.JWT_SECRET
-}
+};
+
 
 passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
   try {
@@ -27,10 +31,10 @@ passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
       return done(null, false, { message: 'Incorrect password '});
     }
     return done(null, user);
-  } catch(error) {
-    return done(error);
+  } catch(e) {
+    return done(e);
   }
-}))
+}));
 
 passport.use(new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
   try {
@@ -43,8 +47,9 @@ passport.use(new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
   } catch(e) {
     return done(e);
   }
-}))
+}));
 
+export default passport;
 
 // passport.use(new GitHubStrategy({
 //     clientID: GITHUB_CLIENT_ID,

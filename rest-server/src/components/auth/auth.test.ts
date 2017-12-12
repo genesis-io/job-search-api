@@ -1,4 +1,8 @@
-import request from 'supertest';
+require('dotenv').config()
+require('dotenv').load()
+
+import  * as request from 'supertest';
+
 import {
   dropTables,
   syncTables
@@ -6,7 +10,7 @@ import {
 import {
   signupUrl,
   loginUrl
-} from '../../config/testglobals'
+} from '../../config/testGlobals'
 import app from '../../config/express';
 
 beforeAll( async() => {

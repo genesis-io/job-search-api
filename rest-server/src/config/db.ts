@@ -1,20 +1,23 @@
-import mysql from 'mysql';
+import * as mysql from 'mysql';
+import * as Promise from 'bluebird';
+
 import {
   success,
   error
 } from '../lib/log'
-import Promise from 'bluebird';
 
-require('dotenv').config();
+interface Option {
+  db: string;
+}
 
-let options = {
+const options: Option = {
   db: process.env.NODE_ENV === 'test' ? process.env.DATABASETEST : process.env.DATABASE
 }
 
-const dataBase = mysql.createConnection({
+const dataBase: any = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASS,
+  password: process.env.DB_PASSWORD,
   database: options.db
 });
 
@@ -23,7 +26,7 @@ dataBase.connect(err => {
     error('error connecting to the database');
     throw err
   }
-  success(`successfully connected to the database!,  ${options.db}`)
+  success(`successfully connected to the database!, ${options.db}`)
 });
 
 Promise.promisifyAll(dataBase);

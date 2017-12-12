@@ -1,4 +1,4 @@
-import db from '../config/db';
+import dataBase from '../config/db';
 import {
   success,
   error
@@ -6,7 +6,7 @@ import {
 
 export const dropTables = async () => {
   try {
-    const userModel = await db.queryAsync(
+    const userModel = await dataBase.queryAsync(
       `DROP TABLE users`
     )
     success('succesfully dropped tables');
@@ -17,7 +17,7 @@ export const dropTables = async () => {
 
 export const syncTables = async () => {
   try {
-    const userModel = await db.queryAsync(
+    const userModel = await dataBase.queryAsync(
       `CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, email VARCHAR(255), password VARCHAR(60))`
     )
     success('succesfully created tables');
