@@ -1,0 +1,11 @@
+language: node_js
+node_js: node
+services: mysql
+install: 
+  - yarn
+  - yarn build:rest-server
+script:
+  - yarn lint
+  - yarn start:rest-server &
+  - sleep 10
+  - yarn run test:rest-server
