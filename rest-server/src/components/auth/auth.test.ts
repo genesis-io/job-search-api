@@ -5,8 +5,9 @@ import  * as request from 'supertest';
 
 import {
   dropUserTables,
-  syncUserTables
-} from "../../lib/sqlScripts";
+  syncUserTables,
+  dropProjectTables
+} from '../../lib/sqlScripts';
 import {
   signupUrl,
   loginUrl
@@ -14,6 +15,7 @@ import {
 import app from '../../config/express';
 
 beforeAll( async() => {
+  await dropProjectTables();
   await dropUserTables();
   await syncUserTables();
 })
