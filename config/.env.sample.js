@@ -7,7 +7,7 @@ const envBuild = {
     'DB_USER=root',
     'DB_PASSWORD=',
     'DATABASE=default',
-    'DATABASETEST=defaultest',
+    'DATABASETEST=defaulttest',
     'JWT_SECRET=default'
   ]
 };
