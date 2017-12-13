@@ -9,7 +9,6 @@ import {
 interface Option {
   db: string;
 }
-
 const options: Option = {
   db: process.env.NODE_ENV === 'test' ? process.env.DATABASETEST : process.env.DATABASE
 }

@@ -4,9 +4,11 @@ require('dotenv').load()
 import * as request from 'supertest';
 
 import {
-  dropTables,
-  syncTables
-} from "../../lib/sqlScripts";
+  dropUserTables,
+  syncUserTables,
+  dropProjectTables,
+  syncProjectTables,
+} from '../../lib/sqlScripts';
 import {
   findUserUrl,
   signupUrl
@@ -14,12 +16,13 @@ import {
 import { error } from '../../lib/log'
 import app from '../../config/express';
 
-
 let token;
 
 beforeAll(async () => {
-  await dropTables();
-  await syncTables();
+  await dropProjectTables();
+  await dropUserTables();
+  await syncUserTables();
+  await syncProjectTables();
   token = await request(app)
     .post(signupUrl)
     .send({ email: 'newuser@gmail.com', password:'howdy17' })

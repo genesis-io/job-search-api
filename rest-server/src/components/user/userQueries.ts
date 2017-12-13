@@ -3,7 +3,7 @@ import dataBase from '../../config/db';
 import { 
   getUser,
   postUser
-} from './userHelpers';
+} from './userSQLHelpers';
 import { error } from '../../lib/log';
 
 export const findUser = async (email: string) => {

@@ -1,3 +1,4 @@
+// import { Request, Response, NextFunction } from 'express';
 import * as bcrypt from 'bcrypt';
 import * as jwt from 'jsonwebtoken';
 
@@ -12,6 +13,7 @@ export const createTokenForUser = async (userEmail: string) => {
 }
 
 export const login = async (req: any, res: any, next: any) => {
+// export const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = await createTokenForUser(req.user[0].email)
     return res.status(200).append('authorization', token).send('successfully logged in')

@@ -4,9 +4,10 @@ require('dotenv').load()
 import  * as request from 'supertest';
 
 import {
-  dropTables,
-  syncTables
-} from "../../lib/sqlScripts";
+  dropUserTables,
+  syncUserTables,
+  dropProjectTables
+} from '../../lib/sqlScripts';
 import {
   signupUrl,
   loginUrl
@@ -14,8 +15,9 @@ import {
 import app from '../../config/express';
 
 beforeAll( async() => {
-  await dropTables();
-  await syncTables();
+  await dropProjectTables();
+  await dropUserTables();
+  await syncUserTables();
 })
 
 describe('POST/api/auth/signup', () => {
