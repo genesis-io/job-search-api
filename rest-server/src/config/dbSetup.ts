@@ -6,9 +6,8 @@ import {
   useDatabase,
   dropDatabase,
   syncUserTables,
-  dropUserTables,
-  syncProjectTables,
-  dropUserTables } from '../lib/sqlScripts';
+  syncProjectTables
+} from '../lib/sqlScripts';
 
 const dbSetup = async () => {
   await dropDatabase();
