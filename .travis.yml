@@ -5,6 +5,7 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS defaulttest;'
 install: 
   - yarn
+  - yarn global add mysql
   - yarn global add typescript
   - yarn global add ts-node
   - yarn build:rest-server
