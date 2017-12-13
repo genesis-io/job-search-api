@@ -5,6 +5,7 @@ before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS jobsearchtest;'
 install: 
   - yarn
+  - yarn global add typescript
   - yarn global add ts-node
   - yarn build:rest-server
   - yarn env
