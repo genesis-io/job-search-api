@@ -1,11 +1,16 @@
 language: node_js
 node_js: node
 services: mysql
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS jobsearchtest;'
 install: 
   - yarn
+  - yarn global add ts-node
   - yarn build:rest-server
+  - yarn env
+  - yarn db:setup:rest-server
 script:
-  - yarn lint
+  - yarn lint:rest-server
   - yarn start:rest-server &
   - sleep 10
   - yarn run test:rest-server

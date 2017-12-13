@@ -4,8 +4,8 @@ require('dotenv').load()
 import  * as request from 'supertest';
 
 import {
-  dropTables,
-  syncTables
+  dropUserTables,
+  syncUserTables
 } from "../../lib/sqlScripts";
 import {
   signupUrl,
@@ -14,8 +14,8 @@ import {
 import app from '../../config/express';
 
 beforeAll( async() => {
-  await dropTables();
-  await syncTables();
+  await dropUserTables();
+  await syncUserTables();
 })
 
 describe('POST/api/auth/signup', () => {
