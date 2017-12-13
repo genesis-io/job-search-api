@@ -2,7 +2,7 @@ language: node_js
 node_js: node
 services: mysql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS jobsearchtest;'
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS defaulttest;'
 install: 
   - yarn
   - yarn global add typescript
