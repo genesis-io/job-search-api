@@ -15,7 +15,7 @@ const dbSetup = async () => {
   await useDatabase();
   await syncUserTables();
   await syncProjectTables();
-  process.exit(1);
+  process.exit();
 }
 
 dbSetup();
