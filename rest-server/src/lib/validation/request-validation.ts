@@ -17,5 +17,13 @@ export default {
     params: {
       email: Joi.string().email()
     }
+  },
+  projects: {
+    body: {
+      title: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
+      description: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
+      collaborators: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
+      userId: Joi.number()
+    }
   }
 }

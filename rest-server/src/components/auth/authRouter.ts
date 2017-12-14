@@ -6,8 +6,8 @@ import {
   signUp,
   login
 } from './authController';
-import passportServices from '../../lib/passport';
-import joiValidation from '../../lib/request-validation'
+import passportServices from '../../lib/validation/passport';
+import joiValidation from '../../lib//validation/request-validation'
 
 
 const router = express.Router();

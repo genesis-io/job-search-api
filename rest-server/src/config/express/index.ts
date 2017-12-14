@@ -3,7 +3,7 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
 
-import router from '../router';
+import router from '../../routes';
 
 /**
  * middleware to be loaded into express instance

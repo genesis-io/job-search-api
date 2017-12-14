@@ -6,8 +6,8 @@ import {
   getUser,
   postUser
 } from './userController';
-import joiValidation from '../../lib/request-validation';
-import '../../lib/passport';
+import joiValidation from '../../lib/validation/request-validation';
+import '../../lib/validation/passport';
 
 const router = express.Router();
 

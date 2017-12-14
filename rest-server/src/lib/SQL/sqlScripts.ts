@@ -1,16 +1,15 @@
-import dataBase from '../config/db';
+import dataBase from '../../config/db';
 import {
   success,
   error
-} from './log';
+} from '../log';
 
 // creating and using and dropping a database
-
 export const createDatabase = async () => {
-  const db = process.env.NODE_ENV === 'test' ? process.env.DATABASETEST : process.env.DATABASE;
+  const db = process.env.NODE_ENV === 'production' ? process.env.AWS_DATABASE : process.env.LOCAL_DATABASE;
   try {
     await dataBase.queryAsync(
-      `CREATE DATABASE IF NOT EXISTS ${db}`
+      `CREATE DATABASE IF NOT EXISTS ${db};`
     );
     success(`successfully created db, ${db}`);
   } catch (e) {
@@ -19,10 +18,10 @@ export const createDatabase = async () => {
 };
 
 export const useDatabase = async () => {
-  const db = process.env.NODE_ENV === 'test' ? process.env.DATABASETEST : process.env.DATABASE;
+  const db = process.env.NODE_ENV === 'production' ? process.env.AWS_DATABASE : process.env.LOCAL_DATABASE;
   try {
     await dataBase.queryAsync(
-      `USE ${db}`
+      `USE ${db};`
     );
     success(`using ${db}`);
   } catch (e) {
@@ -34,7 +33,7 @@ export const dropDatabase = async () => {
   const db = process.env.NODE_ENV === 'test' ? process.env.DATABASETEST : process.env.DATABASE;
   try {
     await dataBase.queryAsync(
-      `DROP DATABASE IF EXISTS ${db}`
+      `DROP DATABASE IF EXISTS ${db};`
     );
     success(`dropping ${db}`);
   } catch (e) {
@@ -50,7 +49,7 @@ export const syncUserTables = async () => {
       `CREATE TABLE users 
       (id INT AUTO_INCREMENT PRIMARY KEY,
       email VARCHAR(255),
-      password VARCHAR(60))
+      password VARCHAR(60));
       `
     );
     success('succesfully created user tables');
@@ -62,7 +61,7 @@ export const syncUserTables = async () => {
 export const dropUserTables = async () => {
   try {
     await dataBase.queryAsync(
-      `DROP TABLE IF EXISTS users`
+      `DROP TABLE IF EXISTS users;`
     );
     success('succesfully dropped users tables');
   } catch(e) {
@@ -84,7 +83,7 @@ export const syncProjectTables = async () => {
       user_id INT,
       FOREIGN KEY(user_id) 
         REFERENCES users(id)
-        ON DELETE CASCADE)`
+        ON DELETE CASCADE);`
     );
     success('successfully created project tables')
   } catch (e) {
@@ -95,7 +94,7 @@ export const syncProjectTables = async () => {
 export const dropProjectTables = async () => {
   try {
     await dataBase.queryAsync(
-      `DROP TABLE IF EXISTS projects`
+      `DROP TABLE IF EXISTS projects;`
     );
     success('succesfully dropped project tables');
   } catch(e) {
