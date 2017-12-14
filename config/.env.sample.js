@@ -3,11 +3,16 @@ const envBuild = {
     'DEBUG=TRUE',
     'NODE_ENV=test',
     'PORT=5000',
-    'DB_HOST=localhost',
-    'DB_USER=root',
-    'DB_PASSWORD=',
-    'DATABASE=default',
-    'DATABASETEST=defaulttest',
+    'LOCAL_HOST=localhost',
+    'LOCAL_PORT'=3306
+    'LOCAL_USER=root',
+    'LOCAL_PASSWORD=',
+    'LOCAL_DATABASE=default',
+    'AWS_HOST=',
+    'AWS_PORT=',
+    'AWS_USER=',
+    'AWS_PASSWORD=',
+    'AWS_DATABASE=',
     'JWT_SECRET=default'
   ]
 };
