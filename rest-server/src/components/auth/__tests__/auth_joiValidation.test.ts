@@ -1,5 +1,5 @@
-require('dotenv').config()
-require('dotenv').load()
+require('dotenv').config();
+require('dotenv').load();
 
 import  * as request from 'supertest';
 
@@ -7,18 +7,18 @@ import {
   dropUserTables,
   syncUserTables,
   dropProjectTables
-} from '../../lib/sqlScripts';
+} from '../../../lib/SQL/sqlScripts';
 import {
   signupUrl,
   loginUrl
-} from '../../config/testGlobals'
-import app from '../../config/express';
+} from '../../../config/test/testGlobals';
+import app from '../../../config/express';
 
 beforeAll( async() => {
   await dropProjectTables();
   await dropUserTables();
   await syncUserTables();
-})
+});
 
 describe('POST/api/auth/signup', () => {
 

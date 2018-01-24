@@ -15,12 +15,12 @@ export const createTokenForUser = async (userEmail: string) => {
 export const login = async (req: any, res: any, next: any) => {
 // export const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = await createTokenForUser(req.user[0].email)
+    const token = await createTokenForUser(req.user[0].email);
     return res.status(200).append('authorization', token).send('successfully logged in')
   } catch(e) {
     return next(e)
   }
-}
+};
 
 export const signUp = async (req: any, res: any, next: any) => {
   const { email, password } = req.body;
@@ -44,4 +44,4 @@ export const signUp = async (req: any, res: any, next: any) => {
   } catch(e) {
     return next(e);
   }
-}
+};

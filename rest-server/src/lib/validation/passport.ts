@@ -4,7 +4,7 @@ import * as  jwt from 'passport-jwt';
 import * as  GitHubStrategy from 'passport-github2';
 import * as  bcrypt from 'bcrypt';
 
-import { findUser } from '../components/user/userQueries';
+import { findUser } from '../../components/user/userQueries';
 
 const LocalStrategy = local.Strategy;
 const JwtStrategy = jwt.Strategy;

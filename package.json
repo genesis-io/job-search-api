@@ -9,7 +9,7 @@
     "lint:rest-server": "cd rest-server && eslint src",
     "start:rest-server": "cd rest-server && yarn start",
     "test:rest-server": "cd rest-server && yarn run test",
-    "db:setup:rest-server": "cd rest-server && ts-node src/config/dbSetup.ts",
+    "db:setup:rest-server": "cd rest-server && ts-node src/config/db/dbSetup.ts",
     "env": "node bin/buildEnv.js"
   },
   "repository": {

@@ -6,6 +6,7 @@
   "jest": {
     "collectCoverage": true,
     "notify": true,
+    "verbose": true,
     "moduleFileExtensions": [
       "ts",
       "tsx",
@@ -61,6 +62,7 @@
     "@types/jest": "^21.1.8",
     "@types/joi": "^13.0.2",
     "@types/mysql": "^2.15.2",
+    "@types/node": "^8.0.58",
     "@types/passport": "^0.4.1",
     "@types/passport-github2": "^1.1.2",
     "@types/passport-jwt": "^3.0.0",

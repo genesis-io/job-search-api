@@ -2,24 +2,24 @@ import * as chalk from 'chalk';
 
 export const success = (...log: any[]) => {
   if (process.env.DEBUG === 'TRUE') {
-    console.log(chalk.default.black.bgGreen.bold(...log));
+    console.log(chalk.default.white.bgGreen.bold(...log));
   }
 };
 
 export const warning = (...log: any[]) => {
   if (process.env.DEBUG === 'TRUE') {
-    console.log(chalk.default.black.bgYellow.bold(...log));
+    console.log(chalk.default.white.bgYellow.bold(...log));
   }
 };
 
 export const error = (...log: any[]) => {
   if (process.env.DEBUG === 'TRUE') {
-    console.log(chalk.default.black.bgRed.bold(...log));
+    console.log(chalk.default.white.bgRed.bold(...log));
   }
 };
 
 export const log = (...log: any[]) => {
   if (process.env.DEBUG === 'TRUE') {
-    console.log(chalk.default.black.bgWhite.bold(...log));
+    console.log(chalk.default.white.bgWhite.bold(...log));
   }
 };
