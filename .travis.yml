@@ -17,4 +17,12 @@ script:
   - yarn lint:rest-server
   - yarn start:rest-server &
   - sleep 10
-  - yarn run test:rest-server
+  - jest user_joiValidation.test.ts
+  - sleep 10
+  - jest user_integration.test.ts
+  - sleep 10
+  - jest project_integration.test.ts
+  - sleep 10
+  - jest project_joiValidation.test.ts
+  - sleep 10
+  - jest auth_joiValidation.test.ts
