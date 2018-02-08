@@ -9,5 +9,8 @@
   "node",
   "security",
   "mocha"
-  ]
+  ],
+  "rules": {
+    "node/no-unsupported-features": 0
+  }
 }

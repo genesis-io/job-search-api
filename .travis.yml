@@ -1,8 +1,9 @@
 language: node_js
 node_js: node
-services: mysql
-before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS travisCI;'
+services: 
+  - postgresql
+before_script:
+  - psql -c 'create database jobsearchtest;' -U postgres
 install: 
   - yarn
   - yarn global add typescript
