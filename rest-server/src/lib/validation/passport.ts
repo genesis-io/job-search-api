@@ -4,7 +4,8 @@ import * as  jwt from 'passport-jwt';
 import * as  GitHubStrategy from 'passport-github2';
 import * as  bcrypt from 'bcrypt';
 
-import { findUser } from '../../components/user/userQueries';
+import db from '../../config/db';
+import { getUserHelper } from '../../components/user/userSQLHelpers';
 
 const LocalStrategy = local.Strategy;
 const JwtStrategy = jwt.Strategy;
@@ -22,15 +23,16 @@ const jwtOptions = {
 
 passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
   try {
-    const user = await findUser(email)
-    if (!user.length) {
+    // const user = await findUser(email)
+    const { rows } = await db.queryAsync(getUserHelper({ email }));
+    if (!rows.length) {
       return done(null, false, { message: 'Incorrect email.' });
     }
-    const passwordsMatch = await bcrypt.compare(password, user[0].password)
+    const passwordsMatch = await bcrypt.compare(password, rows[0].password)
     if (!passwordsMatch) {
       return done(null, false, { message: 'Incorrect password '});
     }
-    return done(null, user);
+    return done(null, rows[0]);
   } catch(e) {
     return done(e);
   }
@@ -38,9 +40,9 @@ passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
 
 passport.use(new JwtStrategy(jwtOptions, async (jwt_payload, done) => {
   try {
-    const user = await findUser(jwt_payload.sub);
-    if (user.length) {
-      return done(null, user);
+    const { rows } = await db.queryAsync(getUserHelper({ email: jwt_payload.sub }));
+    if (rows.length) {
+      return done(null, rows[0]);
     } else {
       return done(null, false);
     }

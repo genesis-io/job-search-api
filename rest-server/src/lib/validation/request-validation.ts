@@ -15,15 +15,20 @@ export default {
   },
   findUser: {
     params: {
-      email: Joi.string().email()
+      email: Joi.string().email(),
     }
   },
-  projects: {
+  saveProjects: {
     body: {
       title: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
       description: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
       collaborators: Joi.string().regex(/^[a-z\d\-_\,\s]+$/i),
-      userId: Joi.number()
+      userId: Joi.number(),
+    }
+  },
+  findProjects: {
+    body: {
+      userId: Joi.number(),
     }
   }
 }
