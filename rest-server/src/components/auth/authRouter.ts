@@ -7,7 +7,7 @@ import {
   login
 } from './authController';
 import passportServices from '../../lib/validation/passport';
-import joiValidation from '../../lib//validation/request-validation'
+import joiValidation from '../../lib//validation/request-validation';
 
 
 const router = express.Router();

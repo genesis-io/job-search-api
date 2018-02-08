@@ -113,7 +113,6 @@ describe('POST/api/auth/login', () => {
       .send({ email: 'jobsearch@gmail.com', password: 'jobsearching' })
       .expect(200)
       .then(response => {
-        expect(response.text).toBe('successfully logged in')
         expect(response.headers).toHaveProperty('authorization')
       })
   })
