@@ -1,4 +1,4 @@
-import * as mysql from 'mysql';
+import { Pool } from 'pg';
 import * as Promise from 'bluebird';
 
 import {
@@ -6,37 +6,35 @@ import {
   error
 } from '../../lib/log';
 
-interface Option {
-  host: string;
-  port: number;
+interface Config {
   user: string;
-  password: string;
+  host: string;
   database: string;
+  password: string;
+  port: number;
+  max: number;
 };
-const options: Option = {
-  host: process.env.NODE_ENV === 'production' ? process.env.AWS_HOST : process.env.LOCAL_HOST,
-  port: process.env.NODE_ENV === 'production' ? parseInt(process.env.AWS_PORT, 10) : parseInt(process.env.LOCAL_PORT, 10),
+const config: Config = {
   user: process.env.NODE_ENV === 'production' ? process.env.AWS_USER : process.env.LOCAL_USER,
+  host: process.env.NODE_ENV === 'production' ? process.env.AWS_HOST : process.env.LOCAL_HOST,
+  database: process.env.NODE_ENV === 'production' ? process.env.AWS_DATABASE : process.env.LOCAL_DATABASE,
   password: process.env.NODE_ENV === 'production' ? process.env.AWS_PASSWORD : process.env.LOCAL_PASSWORD,
-  database: process.env.NODE_ENV === 'production' ? process.env.AWS_DATABASE : process.env.LOCAL_DATABASE
+  port: process.env.NODE_ENV === 'production' ? parseInt(process.env.AWS_PORT, 10) : parseInt(process.env.LOCAL_PORT, 10),
+  max: 20
 };
 
-const dataBase: any = mysql.createConnection({
-  host: options.host,
-  port: options.port,
-  user: options.user,
-  password: options.password,
-  database: options.database
+const db: any = new Pool(config)
+
+db.on('connect', () => {
+  success('successfully connected to pg', config.database);
 });
 
-dataBase.connect(err => {
-  if (err) {
-    error('error connecting to the database');
-    throw err
-  }
-  success(`successfully connected to the database!, ${options.database}`)
+db.on('error', err => {
+  error('error in pg ', err);
 });
 
-Promise.promisifyAll(dataBase);
+db.connect();
 
-export default dataBase;
+Promise.promisifyAll(db);
+
+export default db;
