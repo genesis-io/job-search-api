@@ -2,7 +2,7 @@ language: node_js
 node_js: node
 services: 
   - postgresql
-before_script:
+before_install:
   - psql -c 'CREATE DATABASE jobsearchtest;' -U postgres
   - psql -c "CREATE USER root WITH PASSWORD '';" -U postgres
   - psql -c 'ALTER USER root WITH SUPERUSER;' -U postgres
