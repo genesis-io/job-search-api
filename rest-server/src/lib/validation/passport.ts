@@ -23,7 +23,6 @@ const jwtOptions = {
 
 passport.use(new LocalStrategy(localOptions, async (email, password, done) => {
   try {
-    // const user = await findUser(email)
     const { rows } = await db.queryAsync(getUserHelper({ email }));
     if (!rows.length) {
       return done(null, false, { message: 'Incorrect email.' });
