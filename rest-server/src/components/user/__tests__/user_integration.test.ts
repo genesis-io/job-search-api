@@ -34,7 +34,7 @@ describe('/api/users integration test', () => {
     expect.assertions(2);
     await request(app)
       .post(signupUrl)
-      .send({ email: 'test@gmail.com', password: 'horwdy17' })
+      .send({ email: 'test@gmail.com', password: 'howdy17' })
     const { body, statusCode } = await request(app)
       .get(`${findUserUrl}/test@gmail.com`)
       .set('authorization', token)

@@ -27,12 +27,10 @@ beforeAll(async () => {
     .post(signupUrl)
     .send({ email: 'ok@gmail.com', password: 'howdy17' })
     .then(response => token = response.header.authorization)
-  console.log('1token= ', token)
 })
 
 describe('GET/api/users', () => {
   test('should return 400 if parameter is not valid email', async () => {
-    console.log('2token= ', token)
     const response = await request(app)
     .get(`${findUserUrl}/ok`)
     .set('authorization', token)
@@ -40,7 +38,6 @@ describe('GET/api/users', () => {
   });
   
   test('should return the user and 200 if user is found in the db', async () => {
-    console.log('3token= ', token)
     expect.assertions(2)
     const { body, statusCode } = await request(app)
       .get(`${findUserUrl}/ok@gmail.com`)
