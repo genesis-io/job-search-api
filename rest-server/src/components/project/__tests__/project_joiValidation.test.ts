@@ -43,7 +43,7 @@ beforeAll(async () => {
   await syncProjectTables();
   await request(app)
     .post(signupUrl)
-    .send({ email: 'test@gmail.com', password: 'test' });
+    .send({ email: 'newuser@gmail.com', password: 'test' });
 });
 
 describe('GET/api/projects joi validation tests', () => {
