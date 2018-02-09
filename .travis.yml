@@ -10,7 +10,6 @@ install:
   - yarn
   - yarn global add typescript
   - yarn global add ts-node
-  - yarn global add jest
   - yarn build:rest-server
   - yarn env
   - yarn db:setup:rest-server
@@ -18,8 +17,4 @@ script:
   - yarn lint:rest-server
   - yarn start:rest-server &
   - sleep 10
-  - jest rest-server/src/components/user/__tests__/user_joiValidation.test.ts 
-  - jest rest-server/src/components/user/__tests__/user_integration.test.ts 
-  - jest rest-server/src/components/project/__tests__/project_integration.test.ts 
-  - jest rest-server/src/components/project/__tests__/project_joiValidation.test.ts
-  - jest rest-server/src/components/auth/__tests__/auth_joiValidation.test.ts
+  - yarn run test:rest-server
