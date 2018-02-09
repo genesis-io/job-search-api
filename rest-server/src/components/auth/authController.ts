@@ -39,7 +39,9 @@ export const signUp = async (req: Request, res: Response, next: NextFunction) =>
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
       await db.queryAsync(postUserHelper({ email, password: hashedPassword }));
+      console.log('email = ', email);
       const token = await createTokenForUser(email);
+      console.log('0token= ', token)
       return res.status(200).set('authorization', token).send({ token });
     }
   } catch(e) {
