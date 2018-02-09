@@ -25,7 +25,7 @@ beforeAll(async () => {
   await syncProjectTables();
   token = await request(app)
     .post(signupUrl)
-    .send({ email: 'newuser@gmail.com', password: 'howdy17' })
+    .send({ email: 'test@gmail.com', password: 'howdy17' })
     .then(response => token = response.header.authorization);
 });
 
