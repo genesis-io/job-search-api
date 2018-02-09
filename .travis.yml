@@ -18,8 +18,8 @@ script:
   - yarn lint:rest-server
   - yarn start:rest-server &
   - sleep 10
-  - jest rest-server/components/user/__tests__/user_joiValidation.test.ts 
-  - jest rest-server/components/user/__tests__/user_integration.test.ts 
-  - jest rest-server/components/project/__tests__/project_integration.test.ts 
-  - jest rest-server/components/project/__tests__/project_joiValidation.test.ts
-  - jest rest-server/components/auth/__tests__/auth_joiValidation.test.ts
+  - jest rest-server/src/components/user/__tests__/user_joiValidation.test.ts 
+  - jest rest-server/src/components/user/__tests__/user_integration.test.ts 
+  - jest rest-server/src/components/project/__tests__/project_integration.test.ts 
+  - jest rest-server/src/components/project/__tests__/project_joiValidation.test.ts
+  - jest rest-server/src/components/auth/__tests__/auth_joiValidation.test.ts
