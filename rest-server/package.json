@@ -22,7 +22,7 @@
   "scripts": {
     "start": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "eslint src",
-    "test": "jest ",
+    "test": "jest user_joiValidation.test.ts",
     "test:watch": "jest --watch"
   },
   "keywords": [],
