@@ -1,21 +1,17 @@
-import * as express from 'express';
+import { Router } from 'express';
 import * as validate from 'express-validation';
-// import * as passport from 'passport';
+import * as passport from 'passport';
 
-import {
-  getProjects,
-  postProject
-} from './projectController';
+import { projectController } from './projectController';
+import passportServices from '../../lib/validation/passport';
 import joiValidation from '../../lib/validation/request-validation';
-// import '../../lib/passport';
 
-const router = express.Router();
+const router: Router = Router();
 
 router.route('/:userId')
-  .get(getProjects);
+  .get(validate(joiValidation.findProjects), passport.authenticate('jwt', { session: false}), projectController);
 
 router.route('/')
-  .post(validate(joiValidation.projects), postProject);
-
+  .post(validate(joiValidation.saveProjects), passport.authenticate('jwt', { session: false }), projectController);
 
 export default router;

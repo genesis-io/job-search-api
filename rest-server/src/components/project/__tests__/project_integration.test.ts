@@ -20,7 +20,7 @@ interface testProjectObj {
   description: string,
   collaborators: string,
   userId: number
-}
+};
 
 const testProject: testProjectObj = {
   title: 'test',
@@ -29,14 +29,17 @@ const testProject: testProjectObj = {
   userId: 1
 };
 
+let token;
+
 beforeAll(async () => {
   await dropProjectTables();
   await dropUserTables();
   await syncUserTables();
   await syncProjectTables();
-  await request(app)
+  token = await request(app)
     .post(signupUrl)
-    .send({ email: 'test@gmail.com', password: 'test' });
+    .send({ email: 'projectInt@gmail.com', password: 'test' })
+    .then(response => token = response.header.authorization);
 });
 
 describe('/api/projects integration test', () => {
@@ -44,9 +47,11 @@ describe('/api/projects integration test', () => {
     expect.assertions(2);
     await request(app)
       .post(projectUrl)
+      .set('authorization', token)
       .send(testProject);
     const { body, statusCode } = await request(app)
-      .get(`${projectUrl}/1`);
+      .get(`${projectUrl}/1`)
+      .set('authorization', token);
     expect(JSON.stringify(body[0])).toBe(JSON.stringify({
       id: 1,
       title: 'test',
@@ -54,6 +59,6 @@ describe('/api/projects integration test', () => {
       collaborators: 'test1, test2, test3',
       user_id: 1
     }));
-    expect(statusCode).toBe(200);
+    expect(statusCode).toBe(200);      
   });
 });

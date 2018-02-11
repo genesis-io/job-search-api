@@ -32,7 +32,7 @@ class App {
   }
 
   private mountRoutes = (): void => {
-    this.express.use('/api', router)
+    this.express.use('/api', router);
   }
 }
 

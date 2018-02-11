@@ -1,8 +1,11 @@
 language: node_js
 node_js: node
-services: mysql
+services: 
+  - postgresql
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS travisCI;'
+  - psql -c 'CREATE DATABASE jobsearchtest;' -U postgres
+  - psql -c "CREATE USER root WITH PASSWORD '';" -U postgres
+  - psql -c 'ALTER USER root WITH SUPERUSER;' -U postgres
 install: 
   - yarn
   - yarn global add typescript

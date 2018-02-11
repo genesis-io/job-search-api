@@ -1,29 +1,15 @@
 import dataBase from '../../config/db';
-
+import { globalQueryHelper } from '../../lib/components/globals';
 import { 
-  getUser,
-  postUser
+  getUserHelper,
+  postUserHelper
 } from './userSQLHelpers';
-import { error } from '../../lib/log';
 
-export const findUser = async (email: string) => {
-  try {
-    const queryString = getUser(email);
-    const result = await dataBase.queryAsync(queryString);
-    return result;
-  } catch(e) {
-    error(e);
-    throw new Error(e);
+export const userQuery = async (payload, url) => {
+  if (url === '/') {
+    return await globalQueryHelper(payload, postUserHelper, 'postUserQuery');
+  } else {
+    return await globalQueryHelper(payload, getUserHelper, 'getUserQuery');
   }
 };
-
-export const saveUser = async (email: string, password: string) => {
-  try {
-    const queryString = postUser(email, password);
-    const result = await dataBase.queryAsync(queryString);
-    return result;
-    } catch(e) {
-      error(e);
-      throw new Error(e);
-    }
-  };
+ 

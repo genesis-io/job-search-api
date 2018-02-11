@@ -14,13 +14,20 @@ import {
   projectUrl
 } from '../../../config/test/testGlobals';
 import app from '../../../config/express';
+import { example } from 'joi';
+
+/**
+ *  testProjectObj is the request body sent
+ *  modified at the start of each test with invalid characters 
+ *  then reset to its default
+ */
 
 interface testProjectObj {
   title: string,
   description: string,
   collaborators: string,
   userId: number
-}
+};
 
 const testProject: testProjectObj = {
   title: 'test',
@@ -36,9 +43,16 @@ beforeAll(async () => {
   await syncProjectTables();
   await request(app)
     .post(signupUrl)
-    .send({ email: 'test@gmail.com', password: 'test' });
+    .send({ email: 'newuser@gmail.com', password: 'test' });
 });
 
+describe('GET/api/projects joi validation tests', () => {
+  // test('checks request params to see if it is a number', async () => {
+  //   const { statusCode } = await request(app)
+  //     .get(`${projectUrl}/1`)
+  //   expect(statusCode).toBe(200);
+  // })
+})
 describe('POST/api/projects joi validation tests', () => {
   test('checks title for any unwanted characters', async () => {
     testProject.title = 'test!@#$%';
@@ -75,4 +89,13 @@ describe('POST/api/projects joi validation tests', () => {
     testProject.userId = 1;
     expect(statusCode).toBe(400);
   });
+  // test('checks user_id to see if it is a number', async () => {
+  //   // testProject.userId = 'test'
+  //   testProject.userId = 'test';
+  //   const { statusCode } = await request(app)
+  //     .post(projectUrl)
+  //     .send(testProject);
+  //   testProject.userId = 1;
+  //   expect(statusCode).toBe(200);
+  // });
 });

@@ -1,20 +1,17 @@
-import * as express from 'express';
+import { Router }from 'express';
 import * as validate from 'express-validation';
 import * as passport from 'passport';
 
-import {
-  getUser,
-  postUser
-} from './userController';
+import { userController } from './userController';
 import joiValidation from '../../lib/validation/request-validation';
 import '../../lib/validation/passport';
 
-const router = express.Router();
+const router: Router = Router();
 
 router.route('/:email')
-  .get(passport.authenticate('jwt', { session: false }), validate(joiValidation.findUser), getUser);
+  .get(validate(joiValidation.findUser), passport.authenticate('jwt', { session: false }), userController);
 
 router.route('/')
-  .post(postUser);
+  .post(userController);
 
 export default router;

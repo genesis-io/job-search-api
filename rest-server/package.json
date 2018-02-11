@@ -22,7 +22,7 @@
   "scripts": {
     "start": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
     "lint": "eslint src",
-    "test": "jest ",
+    "test": "jest",
     "test:watch": "jest --watch"
   },
   "keywords": [],
@@ -42,13 +42,13 @@
     "helmet": "^3.9.0",
     "joi": "^13.0.2",
     "jsonwebtoken": "^8.1.0",
-    "mysql": "^2.15.0",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-github2": "^0.1.11",
     "passport-jwt": "^3.0.1",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "pg": "^7.4.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^1.0.0",
@@ -61,12 +61,12 @@
     "@types/helmet": "^0.0.37",
     "@types/jest": "^21.1.8",
     "@types/joi": "^13.0.2",
-    "@types/mysql": "^2.15.2",
     "@types/node": "^8.0.58",
     "@types/passport": "^0.4.1",
     "@types/passport-github2": "^1.1.2",
     "@types/passport-jwt": "^3.0.0",
     "@types/passport-local": "^1.0.32",
+    "@types/pg": "^7.4.1",
     "@types/supertest": "^2.0.4",
     "babel-cli": "^6.26.0",
     "escape-string-regexp": "^1.0.5",

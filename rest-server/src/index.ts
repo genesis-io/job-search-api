@@ -16,3 +16,17 @@ const server = http.createServer(app);
 server.listen(PORT, () => {
   success('rest-server listening on port ', PORT);
 });
+
+server.on('error', e => {
+  server.close();
+  server.listen(PORT, () => {
+    success('rest-server rebooted');
+  });
+  // if (e.code === 'EADDRINUSE') {
+  //   console.log('Address in use, retrying...');
+  //   setTimeout(() => {
+  //     server.close();
+  //     server.listen(PORT, HOST);
+  //   }, 1000);
+  // }
+});
