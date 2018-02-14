@@ -9,11 +9,12 @@ import {
   dropProjectTables,
   syncProjectTables,
 } from '../../../lib/SQL/sqlScripts';
+
 import {
   findUserUrl,
   signupUrl
 } from '../../../config/test/testGlobals';
-import { error } from '../../../lib/log';
+
 import app from '../../../config/express';
 
 let token;
@@ -26,7 +27,7 @@ beforeAll(async () => {
   token = await request(app)
     .post(signupUrl)
     .send({ email: 'test@gmail.com', password: 'howdy17' })
-    .then(response => token = response.header.authorization);
+    .then(response => token = response.body.token);
 });
 
 describe('/api/users integration test', () => {

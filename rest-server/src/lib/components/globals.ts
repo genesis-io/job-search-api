@@ -15,7 +15,7 @@ export const globalQueryHelper = async (payload, query, name) => {
   try {
     const queryString = query(payload);
     const data = await db.queryAsync(queryString);
-    success(`${name} - successfully retrived data ${JSON.stringify(data)}`);
+    success(`${name} - successfully retrieved data ${JSON.stringify(data)}`);
     return data;
   } catch (err) {
     error(`${name} - error= ', err`);
@@ -23,8 +23,8 @@ export const globalQueryHelper = async (payload, query, name) => {
   }
 };
 
-export const globalController = (query: any, name: string): any => {
-  return async (req: Request, res: Response) => {
+export const globalController = (query: any, name: string): (req: Request, res: Response) => Promise<Response> => {
+  return async (req: Request, res: Response): Promise<Response> => {
     const { url, method } = req;
     let payload;
     if (method === 'POST' || method === 'PUT') {

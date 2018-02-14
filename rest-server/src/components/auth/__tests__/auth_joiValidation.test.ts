@@ -55,7 +55,7 @@ describe('POST/api/auth/signup', () => {
       .post(signupUrl)
       .send({ email: 'newtest@gmail.com', password: 'testit' })
     expect(response.statusCode).toBe(200);
-    expect(response.header).toHaveProperty('authorization');
+    expect(response.body).toHaveProperty('token');
   });
 
   test('does not allow same user to sign up', async () => {
@@ -112,8 +112,8 @@ describe('POST/api/auth/login', () => {
       .post(loginUrl)
       .send({ email: 'jobsearch@gmail.com', password: 'jobsearching' })
       .expect(200)
-      .then(response => {
-        expect(response.headers).toHaveProperty('authorization')
+      .then(({ body }) => {
+        expect(body).toHaveProperty('token')
       })
   })
 })

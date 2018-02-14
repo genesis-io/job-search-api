@@ -13,7 +13,7 @@ export const createDatabase = async () => {
     );
     success(`successfully created db, ${db}`);
   } catch (e) {
-    error(e);
+    error('errored out creating database ', e);
   }
 };
 
@@ -25,7 +25,7 @@ export const useDatabase = async () => {
     );
     success(`using ${db}`);
   } catch (e) {
-    error(e);
+    error('errored out using database ', e);
   }
 };
 
@@ -37,7 +37,7 @@ export const dropDatabase = async () => {
     );
     success(`dropping ${db}`);
   } catch (e) {
-    error(e);
+    error('erroed out dropping database ', e);
   }
 };
 
@@ -59,7 +59,7 @@ export const syncUserTables = async () => {
     );
     success('succesfully created user tables');
   } catch(e) {
-    error(e);
+    error('errored out syncing user tables ', e);
   }
 };
 
@@ -70,7 +70,7 @@ export const dropUserTables = async () => {
     );
     success('succesfully dropped users tables');
   } catch(e) {
-    error(e);
+    error('errored out dropping user tables ', e);
   }
 };
 
@@ -97,7 +97,7 @@ export const syncProjectTables = async () => {
     );
     success('successfully created project tables')
   } catch (e) {
-    error(e);
+    error('errored out syncing project tables ', e);
   }
 };
 
@@ -108,6 +108,6 @@ export const dropProjectTables = async () => {
     );
     success('succesfully dropped project tables');
   } catch(e) {
-    error(e);
+    error('errored out dropping project tables ', e);
   }
 };

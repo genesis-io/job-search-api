@@ -14,6 +14,7 @@ interface Config {
   port: number;
   max: number;
 };
+
 const config: Config = {
   user: process.env.NODE_ENV === 'production' ? process.env.AWS_USER : process.env.LOCAL_USER,
   host: process.env.NODE_ENV === 'production' ? process.env.AWS_HOST : process.env.LOCAL_HOST,
@@ -22,6 +23,7 @@ const config: Config = {
   port: process.env.NODE_ENV === 'production' ? parseInt(process.env.AWS_PORT, 10) : parseInt(process.env.LOCAL_PORT, 10),
   max: 20
 };
+
 
 const db: any = new Pool(config)
 

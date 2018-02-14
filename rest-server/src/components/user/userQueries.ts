@@ -1,4 +1,3 @@
-import dataBase from '../../config/db';
 import { globalQueryHelper } from '../../lib/components/globals';
 import { 
   getUserHelper,

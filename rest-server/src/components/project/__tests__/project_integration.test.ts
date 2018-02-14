@@ -39,7 +39,7 @@ beforeAll(async () => {
   token = await request(app)
     .post(signupUrl)
     .send({ email: 'projectInt@gmail.com', password: 'test' })
-    .then(response => token = response.header.authorization);
+    .then(response => token = response.body.token);
 });
 
 describe('/api/projects integration test', () => {
